@@ -7,6 +7,10 @@ const ChatFeed = (props) => {
     const {chats, activeChat, userName, messages} = props;
     const chat = chats && chats[activeChat];
     
+    const HandleSignOut = () => {
+        window.localStorage.clear();
+        window.location.reload();
+    }
     const renderReadReceipts = (message, isMyMessage) => {
         return chat.people.map((person, index)=> person.last_read === message.id && (
             <div key={`msg_${index}`}
@@ -51,6 +55,7 @@ const ChatFeed = (props) => {
                 <div className="chat-subtitle">
                     {chat.people.map((person)=> ` ${ person.person.username}`)}
                 </div>
+                <button className="button" onClick={HandleSignOut}>Sign Out</button>
             </div>
             {renderMessages()}
             <div style={{height : '100px'}}/>
