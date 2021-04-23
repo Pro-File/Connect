@@ -3,22 +3,22 @@ import {sendMessage, isTyping} from 'react-chat-engine';
 import {SendOutlined, PictureOutlined} from '@ant-design/icons'
 
 const MessageForm = (props) => {
-    const {chatID, creds} = props;
+    const {chatId, creds} = props;
     const [message, setMessage] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const text = message.trim();
-        if(text.length > 0) sendMessage(creds, chatID, { text })
+        if(text.length > 0) sendMessage(creds, chatId, { text })
 
         setMessage('');
     }
     const handleChange = (e) =>{
         setMessage(e.target.value)
-        isTyping(props, chatID)
+        isTyping(props, chatId)
     }
     const handleUpload = (e)=>{
-        sendMessage(creds, chatID, {files: e.target.files, text: ''})
+        sendMessage(creds, chatId, {files: e.target.files, text: ''})
     }
     return (
         <div>
